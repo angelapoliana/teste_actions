@@ -3,6 +3,11 @@ name: ci
 on:
   push:
     branches:
+      - "**"
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches:
       - "main"
 
 jobs:
@@ -23,7 +28,7 @@ jobs:
             ghcr.io/angelapoliana/clockbox
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=sha
+            type=sha,enable=true,priority=100,prefix=sha-,suffix=,format=short
       -
 
         name: Login to Docker Hub
