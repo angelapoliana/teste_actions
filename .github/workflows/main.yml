@@ -27,8 +27,8 @@ jobs:
             # ghcr.io/angelapoliana/clockbox
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{version}},value=v1.0.0 
+            #type=semver,pattern={{version}}
+            type=semver,pattern={{version}},value=v1.1.0 
           #tags: |
             #type=sha,enable=true,priority=100,prefix=,suffix=,format=short
       -
