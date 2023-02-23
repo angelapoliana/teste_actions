@@ -18,13 +18,13 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        #name: Docker meta
-        #id: meta
-        #uses: docker/metadata-action@v4
-        #with:
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
           # list of Docker images to use as base name for tags
-          #images: angelapoliana/clockbox
-            # ghcr.io/angelapoliana/clockbox
+          images: angelapoliana/clockbox
+            #ghcr.io/angelapoliana/clockbox
           # generate Docker tags based on the following events/attributes
           #tags: |
             #type=pep440,enable=true,priority=900,prefix=,suffix=,pattern={{version}},value=version.txt
