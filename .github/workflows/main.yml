@@ -32,7 +32,7 @@ jobs:
             #ghcr.io/angelapoliana/clockbox
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=pep440,enable=true,priority=900,prefix=,suffix=,pattern={{version}},value=$VER
+            type=pep440,enable=true,priority=900,prefix=,suffix=,pattern={{version}},value=${{ env.VERSION }}
           #tags: |
             #type=sha,enable=true,priority=100,prefix=,suffix=,format=short
       -
