@@ -18,6 +18,11 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
+        name: Set variables
+        run: |
+          VER=$(cat version.txt)
+          echo "VERSION=$VER" >> $GITHUB_ENV      
+      -
         name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
@@ -26,8 +31,8 @@ jobs:
           images: angelapoliana/clockbox
             #ghcr.io/angelapoliana/clockbox
           # generate Docker tags based on the following events/attributes
-          #tags: |
-            #type=pep440,enable=true,priority=900,prefix=,suffix=,pattern={{version}},value=version.txt
+          tags: |
+            type=pep440,enable=true,priority=900,prefix=,suffix=,pattern={{version}},value={{env.VERSION}}
           #tags: |
             #type=sha,enable=true,priority=100,prefix=,suffix=,format=short
       -
@@ -40,17 +45,12 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Set variables
-        run: |
-          VER=$(cat version.txt)
-          echo "VERSION=$VER" >> $GITHUB_ENV
-      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ env.VERSION }}
-          #tags: ${{ steps.meta.outputs.tags }}
+          #tags: ${{ env.VERSION }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
